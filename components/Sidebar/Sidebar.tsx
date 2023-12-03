@@ -114,6 +114,7 @@ const Sidebar = <T,>({
       </div>
 
       <CloseSidebarButton onClick={toggleOpen} side={side} />
+
     </div>
   ) : (
     <OpenSidebarButton onClick={toggleOpen} side={side} />

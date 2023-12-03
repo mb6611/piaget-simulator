@@ -68,6 +68,8 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  const [landingPage, setLandingPage] = useState(false);
+
   const handleSend = useCallback(
     async (message: Message, deleteCount = 0, plugin: Plugin | null = null) => {
       if (selectedConversation) {
@@ -348,13 +350,13 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   }, [messagesEndRef]);
 
   return (
-    <div className="relative flex-1 overflow-hidden bg-white dark:bg-[#343541]">
+    <div className="relative flex-1 overflow-hidden bg-white dark:bg-[#FAE7C9]">
       {!(apiKey || serverSideApiKeyIsSet) ? (
         <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
-          <div className="text-center text-4xl font-bold text-black dark:text-white">
+          <div className="text-center text-4xl font-bold text-black dark:text-black">
             Welcome to Chatbot UI
           </div>
-          <div className="text-center text-lg text-black dark:text-white">
+          <div className="text-center text-lg text-black dark:text-black">
             <div className="mb-8">{`Chatbot UI is an open source clone of OpenAI's ChatGPT UI.`}</div>
             <div className="mb-2 font-bold">
               Important: Chatbot UI is 100% unaffiliated with OpenAI.
@@ -399,17 +401,51 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             {selectedConversation?.messages.length === 0 ? (
               <>
                 <div className="mx-auto flex flex-col space-y-5 md:space-y-10 px-3 pt-5 md:pt-12 sm:max-w-[600px]">
-                  <div className="text-center text-3xl font-semibold text-gray-800 dark:text-gray-100">
+                  <div className="text-center text-3xl font-semibold text-gray-800 dark:text-[#706233]">
                     {models.length === 0 ? (
                       <div>
                         <Spinner size="16px" className="mx-auto" />
                       </div>
                     ) : (
-                      'Chatbot UI'
+                      'Piaget Simulator'
                     )}
                   </div>
 
-                  {models.length > 0 && (
+                  {!landingPage && (
+                      <div className="flex h-full flex-col space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-600 text-[#706233]">
+                        <div>
+                          Hey!<br/><br/>
+
+                          We decided to create this app that revolves around Piaget's four stages
+                          of intellectual/cognitive) development:<br/><br/>
+                          <span>
+                              <ul className="list-disc px-4">
+                                <li>sensorimotor</li>
+                                <li>preoperational</li>
+                                <li>concrete operational</li>
+                                <li>formal operational</li>
+                              </ul>
+                          </span><br/>
+
+                          This app uses natural language processing to simulate a child's responses
+                          at a specific age of development according to Piaget's theory.<br/><br/>
+
+                          Now lets take a look!
+                        </div>
+                        <div className="place-content-center flex">
+                          <button
+                              className="rounded-full bg-[#B0926A] w-20"
+                              onClick={() => {
+                                setLandingPage(prev => !prev);
+                              }}
+                          >
+                            Begin🤘
+                          </button>
+                        </div>
+                      </div>
+                  )}
+
+                  {landingPage && models.length > 0 && (
                     <div className="flex h-full flex-col space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-600">
                       <ModelSelect />
 
@@ -424,7 +460,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                         }
                       />
 
-                      <TemperatureSlider
+                      {/*<TemperatureSlider
                         label={t('Temperature')}
                         onChangeTemperature={(temperature) =>
                           handleUpdateConversation(selectedConversation, {
@@ -432,7 +468,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                             value: temperature,
                           })
                         }
-                      />
+                      />*/}
                     </div>
                   )}
                 </div>
