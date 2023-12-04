@@ -416,7 +416,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                         <div>
                           Hey!<br/><br/>
 
-                          We decided to create this app that revolves around Piaget's four stages
+                          We decided to create this app that revolves around Piaget&apos;s four stages
                           of intellectual/cognitive) development:<br/><br/>
                           <span>
                               <ul className="list-disc px-4">
@@ -427,8 +427,8 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                               </ul>
                           </span><br/>
 
-                          This app uses natural language processing to simulate a child's responses
-                          at a specific age of development according to Piaget's theory.<br/><br/>
+                          This app uses natural language processing to simulate a child&apos;s responses
+                          at a specific age of development according to Piaget&apos;s theory.<br/><br/>
 
                           Now lets take a look!
                         </div>
