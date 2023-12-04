@@ -99,7 +99,7 @@ const Home = ({
     dispatch({ field: 'modelError', value: getModelsError(error) });
   }, [dispatch, error, getModelsError]);
 
-  // FETCH MODELS ----------------------------------------------
+  // FETCH MODELS -----------------------------------------------
 
   const handleSelectConversation = (conversation: Conversation) => {
     dispatch({
