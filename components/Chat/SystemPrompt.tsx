@@ -206,7 +206,7 @@ export const SystemPrompt: FC<Props> = ({
           overflow: `${
             textareaRef.current && textareaRef.current.scrollHeight > 400
               ? 'auto'
-              : 'hidden'
+              : 'scroll'
           }`,
         }}
         placeholder={
